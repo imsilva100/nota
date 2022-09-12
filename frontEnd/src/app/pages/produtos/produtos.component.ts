@@ -24,7 +24,7 @@ export class ProdutosComponent implements OnInit {
 
   }
   onSaved($event: any){
-    if($event.changes && $event.changes.lenght>=0) {
+
       if ($event.changes[0].type == 'insert') {
         $event.changes[0].data.id = null;
 
@@ -49,6 +49,6 @@ export class ProdutosComponent implements OnInit {
         })
       }
     }
-  }
+
 
 }

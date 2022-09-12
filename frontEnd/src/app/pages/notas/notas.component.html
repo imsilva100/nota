@@ -22,7 +22,7 @@
     <dxo-form [colCount]="3">
       <dxi-item itemType="group" [colCount]="3" [colSpan]="3">
         <dxi-item dataField="numeroNota"></dxi-item>
-        <dxi-item dataField="dataNota"></dxi-item>
+        <dxi-item dataField="dataNota" ></dxi-item>
         <dxi-item dataField="cliente.nome"></dxi-item>
       </dxi-item>
       <dxi-item dataField="itensNota" [colSpan]="3"></dxi-item>
@@ -43,13 +43,10 @@
         [allowAdding]="true"
         [allowDeleting]="true"
       ></dxo-editing>
-
-      <dxi-column dataField="produto" cellTemplate="produtoCellTemplate" ></dxi-column>
-
-      <div *dxTemplate="let data of 'produtoCellTemplate'">
-        {{data.value ? data.value.descricao : ""}}
-      </div>
-
+      <dxi-column dataField="itensNota" [visible]="false" ></dxi-column>
+      <dxi-column dataField="produto.codigo" [visible]="true" caption ="Codigo" ></dxi-column>
+      <dxi-column dataField="produto.descricao" [visible]="true" caption ="Descrição" ></dxi-column>
+      <dxi-column dataField="produto.preco" [visible]="true" caption ="Preço" format="R$ #,###,##0.00"></dxi-column>
     </dx-data-grid>
   </div>
 
