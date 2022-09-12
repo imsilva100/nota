@@ -1,0 +1,62 @@
+<dx-data-grid
+  id="gridContainer"
+  [dataSource]="notasFiscais"
+  keyExpr="id"
+  [showBorders]="true"
+  (onSaved)="onSaved($event)"
+>
+  <dxo-paging [enabled]="false"></dxo-paging>
+  <dxo-editing
+    mode="popup"
+    [allowUpdating]="true"
+    [allowAdding]="true"
+    [allowDeleting]="true"
+  >
+    <dxo-popup
+      title="Employee Info"
+      [showTitle]="true"
+      [width]="700"
+      [height]="525"
+    >
+    </dxo-popup>
+    <dxo-form>
+      <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+        <dxi-item dataField="numeroNota"></dxi-item>
+        <dxi-item dataField="dataNota"></dxi-item>
+        <dxi-item dataField="cliente.nome">
+          <dx-select-box [dataSource]="clientes" displayExpr="nome" valueExpr="id"> </dx-select-box>
+        </dxi-item>
+        <dxi-item dataField="BirthDate"></dxi-item>
+        <dxi-item dataField="Position"></dxi-item>
+        <dxi-item dataField="HireDate"></dxi-item>
+        <dxi-item
+          dataField="Notes"
+          editorType="dxTextArea"
+          [colSpan]="2"
+          [editorOptions]="{ height: 100 }"
+        >
+        </dxi-item>
+      </dxi-item>
+        <dxi-item itemType="group" caption="Itens da Nota" [colCount]="2" [colSpan]="2">
+          <dxi-item dataField="itensNota.0.produtos.codigo"></dxi-item>
+          <dxi-item dataField="Address"></dxi-item>
+        </dxi-item>
+    </dxo-form>
+
+  </dxo-editing>
+
+  <dxi-column dataField="numeroNota" caption="Número" [width]="90"></dxi-column>
+  <dxi-column dataField="dataNota" dataType="date" caption="Data Nota"></dxi-column>
+  <dxi-column dataField="cliente.nome" caption="Cliente"></dxi-column>
+  <dxi-column dataField="id" caption="Valor Total"></dxi-column>
+  <dxi-column dataField="Position" [width]="90" [visible]="false"></dxi-column>
+  <dxi-column dataField="HireDate" dataType="date" [visible]="false"></dxi-column>
+  <dxi-column dataField="StateID" caption="State" [width]="125" [visible]="false"> </dxi-column>
+  <dxi-column dataField="Address" [visible]="false"></dxi-column>
+  <dxi-column dataField="Notes" [visible]="false"></dxi-column>
+
+  <dxo-master-detail [enabled]="true" template="detalheNota"></dxo-master-detail>
+  <div *dxTemplate="let itens of 'detalheNota'">
+    <itensnota [key]="itens.data.codigo"></itensnota>
+  </div>
+</dx-data-grid>

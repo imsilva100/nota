@@ -1,0 +1,40 @@
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="clientes"
+    keyExpr="id"
+    [showColumnLines]="true"
+    [showRowLines]="true"
+    [showBorders]="true"
+    [rowAlternationEnabled]="true"
+    noDataText="Não há dados Cadastrados."
+    (onSaved)="onSaved($event)"
+  >
+    <dxo-paging [enabled]="false"></dxo-paging>
+    <dxo-editing
+      title="Clientes"
+      mode="popup"
+      [allowUpdating]="true"
+      [allowAdding]="true"
+      [allowDeleting]="true"
+      [confirmDelete]="true"
+      [useIcons]="true"
+    >
+      <dxo-popup
+        title="Dados do cliente"
+        [showTitle]="true"
+        [width]="700"
+        [height]="525"
+      >
+      </dxo-popup>
+      <dxo-form>
+        <dxi-item itemType="group" [colCount]="1" [colSpan]="1">
+          <dxi-item dataField="nome" [editorOptions]="{ width: 600 }"></dxi-item>
+        </dxi-item>
+      </dxo-form>
+    </dxo-editing>
+
+    <dxi-column dataField="nome" caption="Nome">
+      <dxi-validation-rule type="required" message="Campo obrigatório"></dxi-validation-rule>
+    </dxi-column>
+  </dx-data-grid>
+

@@ -1,0 +1,42 @@
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="produtos"
+    keyExpr="id"
+    [showColumnLines]="true"
+    [showRowLines]="true"
+    [showBorders]="true"
+    [rowAlternationEnabled]="true"
+    noDataText="Não há dados Cadastrados."
+    (onSaved)="onSaved($event)"
+  >
+    <dxo-paging [enabled]="true"></dxo-paging>
+
+    <dxo-editing
+      title="Produtos"
+      mode="popup"
+      [allowUpdating]="true"
+      [allowAdding]="true"
+      [allowDeleting]="true"
+      [confirmDelete]="true"
+      [useIcons]="true"
+    >
+      <dxo-popup
+        title="Informações do produto"
+        [showTitle]="true"
+        [width]="900"
+        [height]="525"
+      >
+      </dxo-popup>
+      <dxo-form>
+        <dxi-item itemType="group" [colCount]="1" [colSpan]="1">
+          <dxi-item dataField="codigo" [editorOptions]="{ width: 200 }"></dxi-item>
+          <dxi-item dataField="descricao" [editorOptions]="{ width: 700 }" ></dxi-item>
+          <dxi-item dataField="preco" [editorOptions]="{ width: 200 }" formatValues="currency"></dxi-item>
+        </dxi-item>
+      </dxo-form>
+    </dxo-editing>
+
+    <dxi-column dataField="codigo" caption="Código" [width]="200"  alignment="center"></dxi-column>
+    <dxi-column dataField="descricao" caption="Descrição" ></dxi-column>
+    <dxi-column dataField="preco" caption="Valor Unitário" [width]="200" format="R$ #,###,##0.00" alignment="center"></dxi-column>
+  </dx-data-grid>
