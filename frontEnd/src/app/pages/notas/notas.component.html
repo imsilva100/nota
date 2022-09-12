@@ -1,0 +1,57 @@
+<dx-data-grid
+  id="gridContainer"
+  [dataSource]="notasFiscais"
+  keyExpr="id"
+  [showBorders]="true"
+  (onSaved)="onSaved($event)"
+>
+  <dxo-paging [enabled]="false"></dxo-paging>
+  <dxo-editing
+    mode="popup"
+    [allowUpdating]="true"
+    [allowAdding]="true"
+    [allowDeleting]="true"
+  >
+    <dxo-popup
+      title="Employee Info"
+      [showTitle]="true"
+      [width]="700"
+      [height]="525"
+    >
+    </dxo-popup>
+    <dxo-form [colCount]="3">
+      <dxi-item itemType="group" [colCount]="3" [colSpan]="3">
+        <dxi-item dataField="numeroNota"></dxi-item>
+        <dxi-item dataField="dataNota"></dxi-item>
+        <dxi-item dataField="cliente.nome"></dxi-item>
+      </dxi-item>
+      <dxi-item dataField="itensNota" [colSpan]="3"></dxi-item>
+    </dxo-form>
+
+  </dxo-editing>
+
+  <dxi-column dataField="numeroNota" caption="Número" [width]="90"></dxi-column>
+  <dxi-column dataField="dataNota" dataType="date" caption="Data Nota"></dxi-column>
+  <dxi-column dataField="cliente.nome" caption="Cliente"></dxi-column>
+  <dxi-column dataField="itensNota" [visible]="false" editCellTemplate="itensNotaEditCellTemplate"></dxi-column>
+
+  <div *dxTemplate="let data of 'itensNotaEditCellTemplate'">
+    <dx-data-grid [(dataSource)]="data.value" >
+      <dxo-editing
+        mode="row"
+        [allowUpdating]="true"
+        [allowAdding]="true"
+        [allowDeleting]="true"
+      ></dxo-editing>
+
+      <dxi-column dataField="produto" cellTemplate="produtoCellTemplate"></dxi-column>
+
+      <div *dxTemplate="let data of 'produtoCellTemplate'">
+        {{data.value && data.value.getDisplayValue ? data.value.getDisplayValue() : data.value.descricao}}
+      </div>
+
+    </dx-data-grid>
+  </div>
+
+
+</dx-data-grid>

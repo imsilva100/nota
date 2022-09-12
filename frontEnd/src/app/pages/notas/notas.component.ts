@@ -1,10 +1,10 @@
 import {Component, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {NotasService} from "../../services/notas.service";
+import {NotasService} from "../../shared/services/notas.service";
 import {DxDataGridComponent} from "devextreme-angular";
-import {Cliente} from "../../../models/cliente";
-import {ClientesService} from "../../services/clientes.service";
-import {NotaFiscal} from "../../../models/notaFiscal";
-import {ItensNota} from "../../../models/itensNota";
+import {Cliente} from "../../models/cliente";
+import {ClientesService} from "../../shared/services/clientes.service";
+import {NotaFiscal} from "../../models/notaFiscal";
+import {ItensNota} from "../../models/itensNota";
 
 @Component({
   selector: 'app-notas',

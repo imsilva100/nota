@@ -9,9 +9,10 @@ import {DxDataGridModule, DxFormModule, DxLoadIndicatorModule, DxSelectBoxModule
 import {EstadosCidadesModule} from "./shared/components/estados-cidades/estados-cidades.component";
 import {CommonModule} from "@angular/common";
 import {EstadosPageComponent} from "./pages/estados-page/estados-page.component";
-import {ClientesComponent} from "./shared/components/clientes/clientes.component";
-import {ProdutosComponent} from "./shared/components/produtos/produtos.component";
-import {NotasComponent} from "./shared/components/notas/notas.component";
+import {ClientesComponent} from "./pages/clientes/clientes.component";
+import {ProdutosComponent} from "./pages/produtos/produtos.component";
+import {NotasComponent} from "./pages/notas/notas.component";
+import {FirstKeysToConsolePipe} from "./shared/pipes/first.keys.to.console.pipe";
 
 const routes: Routes = [
   {
@@ -72,14 +73,26 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: false}), DxDataGridModule, DxFormModule, DxSelectBoxModule, CommonModule, DxLoadIndicatorModule, EstadosCidadesModule],
+  imports: [RouterModule.forRoot(routes, {useHash: false}),
+    DxDataGridModule,
+    DxFormModule,
+    DxSelectBoxModule,
+    CommonModule,
+    DxLoadIndicatorModule,
+    EstadosCidadesModule
+  ],
   providers: [AuthGuardService],
-  exports: [RouterModule],
+  exports: [
+    RouterModule],
   declarations: [
     HomeComponent,
     ProfileComponent,
     TasksComponent,
-    EstadosPageComponent
+    EstadosPageComponent,
+    ClientesComponent,
+    ProdutosComponent,
+    NotasComponent,
+    FirstKeysToConsolePipe
   ]
 })
 export class AppRoutingModule { }

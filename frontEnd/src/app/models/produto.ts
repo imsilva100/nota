@@ -5,4 +5,8 @@ export class Produto {
   descricao: string | undefined;
   preco: number | undefined
 
+
+   getDisplayValue(){
+    return this.codigo + " - " + this.descricao;
+   }
 }

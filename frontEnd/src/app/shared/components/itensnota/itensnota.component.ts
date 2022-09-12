@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, Input} from '@angular/core';
-import {NotaFiscal} from "../../../../models/notaFiscal";
-import {ItensNota} from "../../../../models/itensNota";
-import {NotasService} from "../../../services/notas.service";
+import {AfterViewInit, Component, Input, NgModule} from '@angular/core';
+import {NotaFiscal} from "../../../models/notaFiscal";
+import {ItensNota} from "../../../models/itensNota";
+import {NotasService} from "../../services/notas.service";
+import {DxDataGridModule} from "devextreme-angular";
 
 @Component({
   selector: 'itensnota',
@@ -47,3 +48,13 @@ export class ItensnotaComponent implements AfterViewInit {
     return rowData.valorTotal / rowData.quantidade;
   }
 }
+
+
+@NgModule({
+  declarations: [ItensnotaComponent],
+  imports: [
+    DxDataGridModule
+  ],
+  exports: [ItensnotaComponent]
+})
+export class ItensnotaModule { }

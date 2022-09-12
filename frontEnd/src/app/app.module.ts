@@ -1,4 +1,4 @@
-import  {NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {SideNavInnerToolbarModule, SideNavOuterToolbarModule, SingleCardModule} from './layouts';
@@ -6,34 +6,17 @@ import {ChangePasswordFormModule, CreateAccountFormModule, FooterModule, LoginFo
 import {AppInfoService, AuthService, ScreenService} from './shared/services';
 import {UnauthenticatedContentModule} from './unauthenticated-content';
 import {AppRoutingModule} from './app-routing.module';
-import {ClientesComponent} from './shared/components/clientes/clientes.component';
-import {ProdutosComponent} from './shared/components/produtos/produtos.component';
-import {NotasComponent} from './shared/components/notas/notas.component';
 import {ClientesService} from "./shared/services/clientes.service";
 import {ProdutosService} from "./shared/services/produtos.service";
 import {NotasService} from "./shared/services/notas.service";
-import { ItensnotaComponent } from './shared/components/notas/itensnota/itensnota.component';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import {
-  DxDataGridModule,
-  DxFormModule,
-  DxLookupModule,
-  DxMenuModule,
-  DxSelectBoxModule,
-  DxTreeListModule
-} from "devextreme-angular";
+import {ItensnotaModule} from './shared/components/itensnota/itensnota.component';
+import {DxDataGridModule, DxFormModule, DxLookupModule, DxMenuModule, DxSelectBoxModule, DxTreeListModule} from "devextreme-angular";
 import {EstadosCidadesService} from "./shared/services/estados-cidades.service";
 import {HttpClientModule} from "@angular/common/http";
 import {EstadosCidadesModule} from "./shared/components/estados-cidades/estados-cidades.component";
+import {FirstKeysToConsolePipe} from "./shared/pipes/first.keys.to.console.pipe";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ClientesComponent,
-    ProdutosComponent,
-    NotasComponent,
-    ItensnotaComponent
-  ],
   imports: [
     BrowserModule,
     SideNavOuterToolbarModule,
@@ -53,7 +36,11 @@ import {EstadosCidadesModule} from "./shared/components/estados-cidades/estados-
     DxSelectBoxModule,
     DxMenuModule,
     EstadosCidadesModule,
-    DxTreeListModule
+    DxTreeListModule,
+    ItensnotaModule
+  ],
+  declarations: [
+    AppComponent
   ],
   providers: [
     AuthService,
