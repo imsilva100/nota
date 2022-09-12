@@ -44,10 +44,10 @@
         [allowDeleting]="true"
       ></dxo-editing>
 
-      <dxi-column dataField="produto" cellTemplate="produtoCellTemplate"></dxi-column>
+      <dxi-column dataField="produto" cellTemplate="produtoCellTemplate" ></dxi-column>
 
       <div *dxTemplate="let data of 'produtoCellTemplate'">
-        {{data.value && data.value.getDisplayValue ? data.value.getDisplayValue() : data.value.descricao}}
+        {{data.value ? data.value.descricao : ""}}
       </div>
 
     </dx-data-grid>
