@@ -15,7 +15,7 @@
     <dxo-popup
       title="Employee Info"
       [showTitle]="true"
-      [width]="700"
+      [width]="900"
       [height]="525"
     >
     </dxo-popup>
@@ -48,6 +48,7 @@
       <dxi-column dataField="itensNota" [visible]="false" ></dxi-column>
       <dxi-column dataField="produto.codigo" [visible]="true" caption ="Codigo" ></dxi-column>
       <dxi-column dataField="produto.descricao" [visible]="true" caption ="Descrição" ></dxi-column>
+      <dxi-column dataField="quantidade" [visible]="true" caption ="Quantidade" ></dxi-column>
       <dxi-column dataField="produto.preco" [visible]="true" caption ="Preço" format="R$ #,###,##0.00"></dxi-column>
       <dxi-column dataField="valor" [visible]="true" caption ="Total Produto" format="R$ #,###,##0.00"></dxi-column>
     </dx-data-grid>
