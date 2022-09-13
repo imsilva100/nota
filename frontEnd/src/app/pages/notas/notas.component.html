@@ -13,7 +13,7 @@
     [allowDeleting]="true"
   >
     <dxo-popup
-      title="Employee Info"
+      title="Nota Fiscal"
       [showTitle]="true"
       [width]="900"
       [height]="525"
@@ -40,10 +40,31 @@
     </dxo-lookup>
   </dxi-column>
   <dxi-column dataField="itensNota.0.valor" caption="Teste"></dxi-column>
-  <dxi-column [calculateCellValue] = "getTotalNota" caption="Valor Total"></dxi-column>
   <dxi-column dataField="itensNota" [visible]="false" editCellTemplate="itensNotaEditCellTemplate"></dxi-column>
 
   <div *dxTemplate="let data of 'itensNotaEditCellTemplate'">
+    <dx-data-grid [dataSource]="data.value">
+      <dxo-editing
+        mode="row"
+        [allowUpdating]="true"
+        [allowAdding]="true"
+        [allowDeleting]="true"
+      ></dxo-editing>
+      <dxi-column dataField="produto"  caption ="Produto" cellTemplate="produtoCellTemplate" editCellTemplate="produtoCellTemplate"></dxi-column>
+      <div *dxTemplate="let data of 'produtoCellTemplate'">{{data.value}}</div>
+      <div>
+        <dx-select-box
+          [items]="produtosList"
+          displayExpr="descricao"
+          valueExpr="id">
+        </dx-select-box>
+      </div>
+
+      <dxi-column dataField="valor" [visible]="true" caption ="Total Produto" format="R$ #,###,##0.00"></dxi-column>
+    </dx-data-grid>
+  </div>
+
+  <!--<div *dxTemplate="let data of 'itensNotaEditCellTemplate'">
     <dx-data-grid [(dataSource)]="data.value" >
       <dxo-editing
         mode="row"
@@ -64,7 +85,7 @@
       <dxi-column dataField="produto.preco" [visible]="true" caption ="Preço" format="R$ #,###,##0.00"></dxi-column>
       <dxi-column dataField="valor" [visible]="true" caption ="Total Produto" format="R$ #,###,##0.00"></dxi-column>
     </dx-data-grid>
-  </div>
+  </div>-->
 
   <!--<div *dxTemplate="let data of 'itensNotaEditCellTemplate'">
     <dx-data-grid [(dataSource)]="data.value" >

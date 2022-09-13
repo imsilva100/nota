@@ -5,6 +5,8 @@ import {Cliente} from "../../models/cliente";
 import {ClientesService} from "../../shared/services/clientes.service";
 import {NotaFiscal} from "../../models/notaFiscal";
 import {ItensNota} from "../../models/itensNota";
+import {Produto} from "../../models/produto";
+import {ProdutosService} from "../../shared/services/produtos.service";
 
 @Component({
   selector: 'app-notas',
@@ -18,10 +20,12 @@ export class NotasComponent implements OnInit {
   notasFiscais: NotaFiscal[] = [];
   clientes: Cliente[] = [];
   itensNota: ItensNota[] = [];
+  produtosList: Produto[] = [];
 
   constructor(
     private notasFiscaisService: NotasService,
-    private clienteService: ClientesService) { }
+    private clienteService: ClientesService,
+    private produtoListService: ProdutosService) { }
 
   ngOnInit(): void {
     this.notasFiscaisService.getNotas().subscribe({
@@ -37,6 +41,12 @@ export class NotasComponent implements OnInit {
       complete: () => {}
     });
 
+    this.produtoListService.getProdutos().subscribe({
+      next: value => this.produtosList = value,
+      error: err => console.log('ERRO: ', err),
+      complete: () => {}
+    });
+    console.log(this.produtosList);
   }
 
   onSaved($event: any){
@@ -90,8 +100,10 @@ export class NotasComponent implements OnInit {
       next: value => this.itensNota })
   }
 
-  getTotalNota($event: any) {
-
+  onInitNota(event: any){
+    if(event.data && !event.itensNota){
+      event.data.itensNota = new Array<ItensNota>();
+    }
   }
 }
 
