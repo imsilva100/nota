@@ -89,5 +89,9 @@ export class NotasComponent implements OnInit {
     this.notasFiscaisService.getItensNotaFiscalId(e.data.id).subscribe({
       next: value => this.itensNota })
   }
+
+  getTotalNota($event: any) {
+
+  }
 }
 

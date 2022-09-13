@@ -33,6 +33,8 @@
   <dxi-column dataField="numeroNota" caption="Número" [width]="90"></dxi-column>
   <dxi-column dataField="dataNota" dataType="date" caption="Data Nota"></dxi-column>
   <dxi-column dataField="cliente.nome" caption="Cliente"></dxi-column>
+  <dxi-column dataField="itensNota.0.valor" caption="Teste"></dxi-column>
+  <dxi-column [calculateCellValue] = "getTotalNota" caption="Valor Total"></dxi-column>
   <dxi-column dataField="itensNota" [visible]="false" editCellTemplate="itensNotaEditCellTemplate"></dxi-column>
 
   <div *dxTemplate="let data of 'itensNotaEditCellTemplate'">
@@ -47,6 +49,7 @@
       <dxi-column dataField="produto.codigo" [visible]="true" caption ="Codigo" ></dxi-column>
       <dxi-column dataField="produto.descricao" [visible]="true" caption ="Descrição" ></dxi-column>
       <dxi-column dataField="produto.preco" [visible]="true" caption ="Preço" format="R$ #,###,##0.00"></dxi-column>
+      <dxi-column dataField="valor" [visible]="true" caption ="Total Produto" format="R$ #,###,##0.00"></dxi-column>
     </dx-data-grid>
   </div>
 
