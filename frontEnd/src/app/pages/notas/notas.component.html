@@ -50,5 +50,23 @@
     </dx-data-grid>
   </div>
 
+  <!--<div *dxTemplate="let data of 'itensNotaEditCellTemplate'">
+    <dx-data-grid [(dataSource)]="data.value" >
+      <dxo-editing
+        mode="row"
+        [allowUpdating]="true"
+        [allowAdding]="true"
+        [allowDeleting]="true"
+      ></dxo-editing>
+
+      <dxi-column dataField="produto" cellTemplate="produtoCellTemplate" ></dxi-column>
+
+      <div *dxTemplate="let data of 'produtoCellTemplate'">
+        {{data.value ? data.value.codigo : "Sem Itens para demonstrar"}}
+      </div>
+
+    </dx-data-grid>
+  </div>-->
+
 
 </dx-data-grid>
