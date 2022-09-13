@@ -23,7 +23,13 @@
       <dxi-item itemType="group" [colCount]="3" [colSpan]="3">
         <dxi-item dataField="numeroNota"></dxi-item>
         <dxi-item dataField="dataNota" ></dxi-item>
-        <dxi-item dataField="cliente.nome"></dxi-item>
+        <dxi-item dataField="cliente.nome">
+          <dx-select-box
+            [dataSource]="clientes"
+            valueExpr="nome"
+            [displayExpr]="getClienteNome">
+          </dx-select-box>
+        </dxi-item>
       </dxi-item>
       <dxi-item dataField="itensNota" [colSpan]="3"></dxi-item>
     </dxo-form>
