@@ -36,7 +36,7 @@
     <div *dxTemplate="let data of 'clienteCellTemplate'">{{data.value.nome}}</div>
     <div *dxTemplate="let data of 'clienteEditCellTemplate'">
       <dx-select-box
-        [items]= "clientes"
+        [items]="clientes"
         displayExpr="nome"
         valueExpr="id">
       </dx-select-box>

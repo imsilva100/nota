@@ -34,13 +34,12 @@ export class NotasComponent implements OnInit {
       complete: () => {}
     });
 
-
     this.clienteService.getClientes().subscribe({
       next: value => this.clientes = value,
       error: err => console.log('ERRO: ', err),
       complete: () => {}
     });
-
+    console.log(this.clientes);
     this.produtoListService.getProdutos().subscribe({
       next: value => this.produtosList = value,
       error: err => console.log('ERRO: ', err),
@@ -74,30 +73,6 @@ export class NotasComponent implements OnInit {
       })
     }
 
-  }
-
-  getClienteNome(item: any) {
-    if (!item) {
-      return '';
-    }
-
-    return `${item.id} ${item.nome}`;
-  }
-
-
-  onEditingStart(e: any) {
-    this.notasFiscaisService.getItensNotaFiscalId(e.data.id).subscribe({
-      next: value => this.itensNota })
-  }
-
-  editorPreparing(e: any) {
-    this.notasFiscaisService.getItensNotaFiscalId(e.data.id).subscribe({
-      next: value => this.itensNota })
-  }
-
-  initNewRow(e: any) {
-    this.notasFiscaisService.getItensNotaFiscalId(e.data.id).subscribe({
-      next: value => this.itensNota })
   }
 
   onInitNota(event: any){
