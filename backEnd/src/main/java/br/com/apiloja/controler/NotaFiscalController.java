@@ -47,7 +47,7 @@ public class NotaFiscalController {
 	 @ResponseStatus(HttpStatus.CREATED) 
 	 public NotaFiscal adiciona(@RequestBody NotaFiscal nota) {
 
-		 BigDecimal valorTemp = null;
+		 BigDecimal valorTemp = new BigDecimal(1) ;
 
 		 nota.getItensNota().forEach(item -> {
 			item.setNota(nota);
