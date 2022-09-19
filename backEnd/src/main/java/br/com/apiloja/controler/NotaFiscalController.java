@@ -1,5 +1,6 @@
 package br.com.apiloja.controler;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,18 +45,23 @@ public class NotaFiscalController {
 
 	 @PostMapping("/notas/nova")
 	 @ResponseStatus(HttpStatus.CREATED) 
-	 public NotaFiscal adiciona(@RequestBody NotaFiscal nota) { 
-		 
+	 public NotaFiscal adiciona(@RequestBody NotaFiscal nota) {
+
+		 BigDecimal valorTemp = null;
+
 		 nota.getItensNota().forEach(item -> {
 			item.setNota(nota);
-			
+
+			valorTemp.add(item.getValor());
+
 			Optional<Produto> produto = produtoRepostitory.findById(item.getProduto().getId());
 			
 			item.setProduto(produto.get());
 			
 			item.setValor(item.getProduto().getPreco().multiply(item.getQuantidade()));
+
+			nota.setValorTotalNota(item.getValor().add(valorTemp));
 		 });
-		 
 
 		 NotaFiscal nova = notaFiscalRepository.save(nota);	 
 		 return nova;

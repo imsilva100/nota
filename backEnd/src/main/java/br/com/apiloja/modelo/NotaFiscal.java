@@ -1,5 +1,6 @@
 package br.com.apiloja.modelo;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class NotaFiscal {
 	private Long numeroNota;
 	
 	private Date dataNota;
+
+
+	private BigDecimal valorTotalNota;
 	
 	@ManyToOne
 	private Cliente cliente;
@@ -71,6 +75,14 @@ public class NotaFiscal {
 
 	public void setItensNota(List<ItensNota> itensNota) {
 		this.itensNota = itensNota;
+	}
+
+	public BigDecimal getValorTotalNota() {
+		return valorTotalNota;
+	}
+
+	public void setValorTotalNota(BigDecimal valorTotalNota) {
+		this.valorTotalNota = valorTotalNota;
 	}
 	
 }

@@ -42,7 +42,7 @@
       </dx-select-box>
     </div>
   </dxi-column>
-  <dxi-column dataField="itensNota.0.valor" caption="Total da Nota"></dxi-column>
+  <dxi-column dataField="valorTotalNota" caption="Total da Nota"></dxi-column>
   <dxi-column dataField="itensNota" [visible]="false" editCellTemplate="itensNotaEditCellTemplate"></dxi-column>
   <div *dxTemplate="let data of 'itensNotaEditCellTemplate'">
     <dx-data-grid [dataSource]="data.value">

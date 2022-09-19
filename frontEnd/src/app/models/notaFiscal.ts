@@ -9,6 +9,8 @@ import {ItensNota} from "./itensNota";
 
   dataNota: Date | undefined;
 
+  valorTotalNota: bigint | undefined;
+
   cliente: Cliente | undefined;
 
   itensNota: ItensNota[] | undefined;
