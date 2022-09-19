@@ -101,7 +101,7 @@ export class NotasComponent implements OnInit {
   }
 
   onInitNota(event: any){
-    if(event.data && !event.itensNota){
+    if(event.data && !event.data.itensNota){
       event.data.itensNota = new Array<ItensNota>();
     }
   }
