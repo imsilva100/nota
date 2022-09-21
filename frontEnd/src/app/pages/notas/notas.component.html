@@ -32,19 +32,23 @@
 
   <dxi-column dataField="numeroNota" caption="Número" [width]="90"></dxi-column>
   <dxi-column dataField="dataNota" dataType="date" caption="Data Nota"></dxi-column>
+
   <dxi-column dataField="cliente" caption="Cliente" cellTemplate="clienteCellTemplate" editCellTemplate="clienteEditCellTemplate">
     <div *dxTemplate="let data of 'clienteCellTemplate'">{{data.value.nome}}</div>
-    <div *dxTemplate="let data of 'clienteEditCellTemplate'">
+<!--    <div *dxTemplate="let data of 'clienteEditCellTemplate'">
       <dx-select-box
         [items]="clientes"
         displayExpr="nome"
         valueExpr="id">
       </dx-select-box>
-    </div>
+    </div>-->
   </dxi-column>
+
   <dxi-column dataField="valorTotalNota" caption="Total da Nota"></dxi-column>
   <dxi-column dataField="itensNota" [visible]="false" editCellTemplate="itensNotaEditCellTemplate"></dxi-column>
+
   <div *dxTemplate="let data of 'itensNotaEditCellTemplate'">
+    <!--<dx-data-grid [dataSource]="onInitNota(data.value)">-->
     <dx-data-grid [dataSource]="data.value">
       <dxo-editing
         mode="row"
@@ -52,17 +56,33 @@
         [allowAdding]="true"
         [allowDeleting]="true"
       ></dxo-editing>
+
       <dxi-column dataField="produto"  caption ="Produto" cellTemplate="produtoCellTemplate" editCellTemplate="produtoEditCellTemplate"></dxi-column>
+
       <div *dxTemplate="let data of 'produtoCellTemplate'">{{data.value.descricao}}</div>
+
       <div *dxTemplate="let data of 'produtoEditCellTemplate'">
+
         <dx-select-box
           [items]="produtosList"
           displayExpr="descricao"
           valueExpr="id">
         </dx-select-box>
+
       </div>
+
+      <div *dxTemplate="let data of 'clienteEditCellTemplate'">
+        <dx-select-box
+          [items]="clientes"
+          displayExpr="nome"
+          valueExpr="id">
+        </dx-select-box>
+      </div>
+
       <dxi-column dataField="quantidade" caption ="Quantidade" ></dxi-column>
+
       <dxi-column dataField="valor" caption ="Total Produto" format="R$ #,###,##0.00"></dxi-column>
+
     </dx-data-grid>
   </div>
 

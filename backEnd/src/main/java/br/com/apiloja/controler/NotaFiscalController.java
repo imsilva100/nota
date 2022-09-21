@@ -63,7 +63,7 @@ public class NotaFiscalController {
 			item.setValor(item.getProduto().getPreco().multiply(item.getQuantidade()));
 
 
-			 nota.setValorTotalNota(item.getValor());
+			nota.setValorTotalNota(item.getValor());
 
 
 		 });
