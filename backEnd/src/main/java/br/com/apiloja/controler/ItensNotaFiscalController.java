@@ -1,5 +1,6 @@
 package br.com.apiloja.controler;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class ItensNotaFiscalController {
 		List<ItensNota> ItensNotaFiscal = itensNotaRepository.findByNotaId(id);
 		return ItensNotaFiscal;
 	}
-	 
+
+
 
 }

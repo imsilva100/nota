@@ -75,7 +75,15 @@ public class ItensNota {
 
 	public void setNota(NotaFiscal nota) {
 		this.nota = nota;
-	}	
+	}
+
+	public BigDecimal getValorTotalItensNota() {
+		return this.nota.getValorTotalNota();
+	}
+
+	public void setValorTotalItensNota(BigDecimal valorTotalNota) {
+		this.nota.setValorTotalNota( valorTotalNota);
+	}
 	
 	
 

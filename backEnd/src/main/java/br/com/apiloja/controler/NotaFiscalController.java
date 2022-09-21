@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.apiloja.repository.ItensNotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,6 +32,9 @@ public class NotaFiscalController {
 	
 	@Autowired
 	private ProdutoRepository produtoRepostitory;
+
+	@Autowired
+	private ItensNotaRepository itensNotaRepository;
 	
 	@GetMapping("/notas")
 	public List<NotaFiscal> getNotas() {
@@ -52,7 +56,7 @@ public class NotaFiscalController {
 		 nota.getItensNota().forEach(item -> {
 			item.setNota(nota);
 
-			valorTemp.add(item.getValor());
+			/*valorTemp.add(item.getValor());*/
 
 			Optional<Produto> produto = produtoRepostitory.findById(item.getProduto().getId());
 			
@@ -60,11 +64,15 @@ public class NotaFiscalController {
 			
 			item.setValor(item.getProduto().getPreco().multiply(item.getQuantidade()));
 
-			nota.setValorTotalNota(item.getValor().add(valorTemp));
+			item.setValorTotalItensNota(item.getProduto().getPreco().multiply(item.getQuantidade()));
+
+
 		 });
 
 		 NotaFiscal nova = notaFiscalRepository.save(nota);	 
 		 return nova;
+
+
 	 }
 	 
 
@@ -74,7 +82,7 @@ public class NotaFiscalController {
 	}
 	
 	 @DeleteMapping("/notas/deleta/{id}")
-	 public void deletacliente(@PathVariable Long id) {
+	 public void deletaNota(@PathVariable Long id) {
 		 notaFiscalRepository.deleteById(id);
 	 }
 	 
