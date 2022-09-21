@@ -56,15 +56,14 @@ public class NotaFiscalController {
 		 nota.getItensNota().forEach(item -> {
 			item.setNota(nota);
 
-			/*valorTemp.add(item.getValor());*/
-
 			Optional<Produto> produto = produtoRepostitory.findById(item.getProduto().getId());
 			
 			item.setProduto(produto.get());
 			
 			item.setValor(item.getProduto().getPreco().multiply(item.getQuantidade()));
 
-			item.setValorTotalItensNota(item.getProduto().getPreco().multiply(item.getQuantidade()));
+
+			 nota.setValorTotalNota(item.getValor());
 
 
 		 });

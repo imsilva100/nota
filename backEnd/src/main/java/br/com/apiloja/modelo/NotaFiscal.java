@@ -82,7 +82,12 @@ public class NotaFiscal {
 	}
 
 	public void setValorTotalNota(BigDecimal valorTotalNota) {
-		this.valorTotalNota = valorTotalNota;
+		if(getValorTotalNota() == null){
+			this.valorTotalNota = valorTotalNota;
+		}else{
+			this.valorTotalNota = this.valorTotalNota.add(valorTotalNota);
+		}
+
 	}
 	
 }

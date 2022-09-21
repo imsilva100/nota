@@ -77,14 +77,6 @@ public class ItensNota {
 		this.nota = nota;
 	}
 
-	public BigDecimal getValorTotalItensNota() {
-		return this.nota.getValorTotalNota();
-	}
-
-	public void setValorTotalItensNota(BigDecimal valorTotalNota) {
-		this.nota.setValorTotalNota( valorTotalNota);
-	}
-	
 	
 
 }
