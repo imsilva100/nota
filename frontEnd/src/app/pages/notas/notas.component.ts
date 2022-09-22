@@ -29,7 +29,9 @@ export class NotasComponent implements OnInit {
 
   ngOnInit(): void {
     this.notasFiscaisService.getNotas().subscribe({
-      next: value => this.notasFiscais = value,
+      next: value => {
+        this.notasFiscais = value;
+      },
       error: err => console.log('ERRO: ', err),
       complete: () => {}
     });
@@ -48,37 +50,48 @@ export class NotasComponent implements OnInit {
     console.log(this.produtosList);
   }
 
-  onSaved($event: any){
-    if($event.changes[0].type == 'insert'){
-      $event.changes[0].data.id = null;
+  onSaved(event: any){
+    if(event.changes && event.changes.length>0) {
+      if (event.changes[0].type == 'insert') {
+        event.changes[0].data.id = null;
 
-      this.notasFiscaisService.postNota($event.changes[0].data).subscribe({
-        next: () => console.log,
-        error: err => console.log(err),
-        complete: () => console.log
-      })
-    }else if($event.changes[0].type == 'update') {
+        this.notasFiscaisService.postNota(event.changes[0].data).subscribe({
+          next: () => console.log,
+          error: err => console.log(err),
+          complete: () => console.log
+        })
+      }
+      else if (event.changes[0].type == 'update') {
 
-      this.notasFiscaisService.putNota($event.changes[0].data, $event.changes[0].data).subscribe({
-        next: () => console.log,
-        error: err => console.log(err),
-        complete: () => console.log
-      })
+        this.notasFiscaisService.putNota(event.changes[0].data, event.changes[0].data).subscribe({
+          next: () => console.log,
+          error: err => console.log(err),
+          complete: () => console.log
+        })
 
-    }else if($event.changes[0].type == 'remove') {
-      this.notasFiscaisService.deleteNota($event.changes[0].key).subscribe({
-        next: () => console.log,
-        error: err => console.log(err),
-        complete: () => console.log
-      })
+      }
+      else if (event.changes[0].type == 'remove') {
+        this.notasFiscaisService.deleteNota(event.changes[0].key).subscribe({
+          next: () => console.log,
+          error: err => console.log(err),
+          complete: () => console.log
+        })
+      }
     }
-
   }
 
-  onInitNota(event: any){
+  onInitNewRowNotaGrid(event: any) {
     if(event.data && !event.data.itensNota){
       event.data.itensNota = new Array<ItensNota>();
     }
+  }
+
+  valueChandeProduto(event: any, data: any) {
+    data.setValue(this.produtosList.find(x => x.id==event));
+  }
+
+  onSavedItemGrid(event: any, data: any) {
+    data.setValue(data.value)
   }
 }
 

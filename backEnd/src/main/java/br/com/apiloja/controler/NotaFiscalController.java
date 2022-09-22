@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.apiloja.modelo.ItensNota;
 import br.com.apiloja.repository.ItensNotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,20 +54,20 @@ public class NotaFiscalController {
 
 		 BigDecimal valorTemp = new BigDecimal(1) ;
 
-		 nota.getItensNota().forEach(item -> {
-			item.setNota(nota);
+		 BigDecimal totalNota = BigDecimal.ZERO;
+		 for (ItensNota item : nota.getItensNota()) {
+			 item.setNota(nota);
 
-			Optional<Produto> produto = produtoRepostitory.findById(item.getProduto().getId());
-			
-			item.setProduto(produto.get());
-			
-			item.setValor(item.getProduto().getPreco().multiply(item.getQuantidade()));
+			 Optional<Produto> produto = produtoRepostitory.findById(item.getProduto().getId());
 
+			 item.setProduto(produto.get());
 
-			nota.setValorTotalNota(item.getValor());
+			 item.setValor(item.getProduto().getPreco().multiply(item.getQuantidade()));
 
+			 totalNota = totalNota.add(item.getValor());
+		 }
 
-		 });
+		 nota.setValorTotalNota(totalNota);
 
 		 NotaFiscal nova = notaFiscalRepository.save(nota);	 
 		 return nova;
